@@ -9,7 +9,15 @@
 
 
 module "vpc" {
-  source = "./modules/vpc"
+  private1_subnet_cidr = var.private1_subnet_cidr
+  private2_subnet_cidr = var.private2_subnet_cidr
+  vpc_name             = var.vpc_name
+  cluster_name         = var.cluster_name
+  vpc_cidr             = var.vpc_cidr
+  project_name         = var.project_name
+  environment_name     = var.environment_name
+  public_subnet_cidr   = var.public_subnet_cidr
+  source               = "./modules/vpc"
 }
 
 # IAM

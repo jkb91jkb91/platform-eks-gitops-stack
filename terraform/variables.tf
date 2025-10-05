@@ -1,29 +1,12 @@
-variable "vpc_cidr" {
-  type        = string
-  description = "Cidr for vpc"
-}
+variable "vpc_name" { type = string }
+variable "vpc_cidr" { type = string }
+variable "public_subnet_cidr" { type = string }
+variable "private1_subnet_cidr" { type = string }
+variable "private2_subnet_cidr" { type = string }
 
-variable "public_subnet_cidr" {
-  type        = string
-  description = "Cidr for public subnet"
-}
-
-variable "cluster_name" {
-  type        = string
-  description = "Name of EKS cluster"
-}
-
-variable "project_name" {
-  type        = string
-  description = "Name of the project"
-}
-
-variable "environment_name" {
-  type        = string
-  description = "Environment name"
-}
-
-
+variable "cluster_name" { type = string }
+variable "project_name" { type = string }
+variable "environment_name" { type = string }
 
 
 
