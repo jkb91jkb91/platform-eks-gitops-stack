@@ -4,14 +4,15 @@
 
 ## ✅ What’s included?
 
-| Component       | Description |
-|------------------|-------------|
-| **Terraform**     | Modular infrastructure definition |
-| `modules/vpc`     | VPC with public and private subnets |
-| `modules/sg`      | Security Groups |
-| `modules/iam`     | IAM roles and policies for EKS |
-| `modules/eks`     | EKS |
-| `dev.auto.tfvars` | Example configuration with domain and certificate |
+| Component                   |  Description                                      |
+|-----------------------------|---------------------------------------------------|
+| **Terraform**               | Modular infrastructure definition                 |
+| `modules/vpc`               | VPC with public and private subnets               |
+| `modules/vpc_endpoints`     | For Bastion host in priv subnet to connect SSM    |
+| `modules/sg`                | Security Groups                                   |
+| `modules/iam`               | IAM roles and policies for EKS                    |
+| `modules/eks`               | EKS                                               |
+| `dev.auto.tfvars`           | Example configuration with domain and certificate |
 
 ---
 
