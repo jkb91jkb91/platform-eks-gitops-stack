@@ -28,41 +28,51 @@ resource "aws_internet_gateway" "igw" {
 ############################################################################################
 #######---------------------------- PUBLIC RESOURCES --------------------------------#######
 #1 PUBLIC SUBNETS CREATION
-resource "aws_subnet" "public_subnet" {
-  vpc_id                  = aws_vpc.eks_vpc.id
-  cidr_block              = var.public_subnet_cidr
-  availability_zone       = "us-east-1a"
-  map_public_ip_on_launch = true
-  tags = merge(local.common_tags, {
-    Name = "${var.vpc_name}-public-subnet"
-  })
-}
+# resource "aws_subnet" "public_subnet" {
+#   vpc_id                  = aws_vpc.eks_vpc.id
+#   cidr_block              = var.public_subnet_cidr
+#   availability_zone       = var.region
+#   map_public_ip_on_launch = true
+#   tags = merge(local.common_tags, {
+#     Name = "${var.vpc_name}-public-subnet"
+#   })
+# }
 
 #2 ROUTE TABLE
-resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.eks_vpc.id
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
-  }
-  tags = merge(local.common_tags, {
-    Name = "${var.vpc_name}-route-table-public"
-  })
-}
+# resource "aws_route_table" "public" {
+#   vpc_id = aws_vpc.eks_vpc.id
+#   route {
+#     cidr_block = "0.0.0.0/0"
+#     gateway_id = aws_internet_gateway.igw.id
+#   }
+#   tags = merge(local.common_tags, {
+#     Name = "${var.vpc_name}-route-table-public"
+#   })
+# }
 
 #3 PUBLIC SUBNETS ASSOCIATION WITH ROUTE TABLE
-resource "aws_route_table_association" "public_subnet_route_table_association" {
-  subnet_id      = aws_subnet.public_subnet.id
-  route_table_id = aws_route_table.public.id
-}
+# resource "aws_route_table_association" "public_subnet_route_table_association" {
+#   subnet_id      = aws_subnet.public_subnet.id
+#   route_table_id = aws_route_table.public.id
+# }
 
 ############################################################################################
 ######---------------------------- PRIVATE RESOURCES --------------------------------#######
 #1 PRIVATE SUBNETS CREATION
+resource "aws_subnet" "private_subnet_for_bastion_host" {
+  vpc_id                  = aws_vpc.eks_vpc.id
+  cidr_block              = var.private_subnet_for_bastion_cidr
+  availability_zone       = var.private_subnet_for_bastion_AZ
+  map_public_ip_on_launch = true
+  tags = merge(local.common_tags, {
+    Name = "${var.vpc_name}-private_subnet_2"
+  })
+}
+
 resource "aws_subnet" "private_subnet_1" {
   vpc_id                  = aws_vpc.eks_vpc.id
   cidr_block              = var.private1_subnet_cidr
-  availability_zone       = "us-east-1a"
+  availability_zone       = var.private1_subnet_AZ
   map_public_ip_on_launch = true
   tags = merge(local.common_tags, {
     Name = "${var.vpc_name}-private_subnet_2"
@@ -72,7 +82,7 @@ resource "aws_subnet" "private_subnet_1" {
 resource "aws_subnet" "private_subnet_2" {
   vpc_id            = aws_vpc.eks_vpc.id
   cidr_block        = var.private2_subnet_cidr
-  availability_zone = "us-east-1b"
+  availability_zone = var.private2_subnet_AZ
   tags = merge(local.common_tags, {
     Name = "${var.vpc_name}-private_subnet_2"
   })
