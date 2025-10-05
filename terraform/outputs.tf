@@ -11,10 +11,6 @@ output "subnet_id" {
   value = data.aws_subnets.efs_subnet.ids[0]
 }
 
-output "ecr_repo_url" {
-  value = module.ecr.ecr_repo_url
-}
-
-
-
-# OUTPUT ONLY FOR DEBUGGING PURPOSES VPC
+# output "ecr_repo_url" {
+#   value = module.ecr.ecr_repo_url
+# }

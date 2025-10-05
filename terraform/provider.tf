@@ -4,13 +4,19 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.93.0"
+      version = ">= 5.0"
     }
   }
 }
 
 provider "aws" {
-  region     = "us-east-1"
-  access_key = "PASTE_SECRET"
-  secret_key = "PASTE_KEY"
+  region = "us-east-1"
+
+  default_tags {
+    tags = {
+      Project     = var.project_name
+      Environment = var.environment_name
+      Cluster     = var.cluster_name
+    }
+  }
 }

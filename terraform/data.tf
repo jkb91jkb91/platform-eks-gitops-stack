@@ -4,7 +4,6 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_vpcs" "vpc" {
-
 }
 
 data "aws_subnets" "efs_subnet" {

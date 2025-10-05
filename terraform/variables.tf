@@ -1,17 +1,46 @@
-variable "ami" {
+variable "vpc_cidr" {
   type        = string
-  description = "AMI of the image"
+  description = "Cidr for vpc"
 }
 
-variable "instance_type" {
+variable "public_subnet_cidr" {
   type        = string
-  description = "instance_type"
+  description = "Cidr for public subnet"
 }
 
-variable "instance_tags" {
-  type = map(any)
+variable "cluster_name" {
+  type        = string
+  description = "Name of EKS cluster"
 }
 
-variable "tags" {
-  type = map(any)
+variable "project_name" {
+  type        = string
+  description = "Name of the project"
 }
+
+variable "environment_name" {
+  type        = string
+  description = "Environment name"
+}
+
+
+
+
+
+# variable "ami" {
+#   type        = string
+#   description = "AMI of the image"
+# }
+
+# variable "instance_type" {
+#   type        = string
+#   description = "instance_type"
+# }
+
+# variable "instance_tags" {
+#   type = map(any)
+# }
+
+# variable "tags" {
+#   type = map(any)
+# }
