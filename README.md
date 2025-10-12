@@ -46,7 +46,7 @@ terraform apply
 
 🚀 ....
 
-Connection to AWS is done by using SSM Agent. EC2 does not use public IP.
+Connection to AWS from your machine is done by using SSM Agent. EC2 does not use public IP.
 ```
 aws ssm start-session --target i-XXXXXXXXXXXX --region <region>
 ```
