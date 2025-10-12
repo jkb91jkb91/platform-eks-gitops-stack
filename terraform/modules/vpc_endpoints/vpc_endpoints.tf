@@ -33,7 +33,7 @@ resource "aws_security_group" "vpce" {
     from_port       = 443
     to_port         = 443
     protocol        = "tcp"
-    security_groups = [aws_security_group.bastion.id]
+    security_groups = [var.aws_security_group_bastion_id]
   }
 
   egress {
@@ -44,23 +44,3 @@ resource "aws_security_group" "vpce" {
   }
 }
 
-resource "aws_security_group" "bastion" {
-  name        = "${var.vpc_name}-bastion-sg"
-  description = "Bastion over SSM (no inbound)"
-  vpc_id      = var.vpc_id
-
-  # Brak ingress — nie wystawiamy żadnych portów
-
-  # Egress: pełny, aby bastion mógł wyjść do VPCE (443) i ewentualnie innych usług w VPC
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = []
-  }
-
-  tags = merge(local.common_tags, {
-    Name = "${var.vpc_name}-bation-sg"
-  })
-}

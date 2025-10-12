@@ -1,118 +1,30 @@
-# resource "aws_security_group" "fargate_service_sg" {
-#   name        = "fargate-service-sg"
-#   description = "Security Group for Fargate service"
-#   vpc_id      = var.vpc_id
 
-#   // INGRESS rules
-#   ingress {
-#     description = "Allow SSH"
-#     from_port   = 22
-#     to_port     = 22
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
+locals {
+  common_tags = {
+    Project     = var.project_name
+    Environment = var.environment_name
+    Cluster     = var.cluster_name
+  }
+}
 
-#   ingress {
-#     description = "Allow All traffic"
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
+#SG FOR BASTION HOST
+resource "aws_security_group" "bastion" {
+  name        = "${var.vpc_name}-bastion-sg"
+  description = "Bastion over SSM (no inbound)"
+  vpc_id      = var.vpc_id
 
-#   ingress {
-#     description = "Allow HTTPS"
-#     from_port   = 443
-#     to_port     = 443
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
+  # NO INGRESS
 
-#   ingress {
-#     description = "Allow HTTP"
-#     from_port   = 80
-#     to_port     = 80
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
+  # FULL EGRESS to VPCE (443) 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = []
+  }
 
-#   ingress {
-#     description = "Allow NFS"
-#     from_port   = 2049
-#     to_port     = 2049
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   // EGRESS rule: Allow all
-#   egress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   tags = {
-#     Name = "fargate-service-sg"
-#   }
-# }
-
-# resource "aws_security_group" "vpc_endpoints_sg" {
-#   name        = "vpc-endpoints-sg"
-#   description = "Security Group for VPC Endpoints"
-#   vpc_id      = var.vpc_id
-
-#   // INGRESS rules
-#   ingress {
-#     description = "Allow SSH"
-#     from_port   = 22
-#     to_port     = 22
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     description = "Allow All traffic"
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1" # All protocols
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     description = "Allow HTTPS"
-#     from_port   = 443
-#     to_port     = 443
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     description = "Allow HTTP"
-#     from_port   = 80
-#     to_port     = 80
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     description = "Allow NFS"
-#     from_port   = 2049
-#     to_port     = 2049
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   // EGRESS - Allow all outbound traffic
-#   egress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   tags = {
-#     Name = "vpc-endpoints-sg"
-#   }
-# }
-
+  tags = merge(local.common_tags, {
+    Name = "${var.vpc_name}-bation-sg"
+  })
+}
