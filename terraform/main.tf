@@ -68,11 +68,15 @@ module "bastion_host" {
 #   vpc_id = module.vpc.vpc_id
 # }
 
-# EKS
-# module "eks" {
-#   source = "./modules/eks"
-#   vpc_id = module.vpc.vpc_id
-# }
+#EKS
+module "eks" {
+  source = "./modules/eks"
+  vpc_id = module.vpc.vpc_id
+  cluster_name  =  var.cluster_name
+  cluster_version = var.cluster_version
+  subnet_ids = var.subnet_ids
+  instance_types = var.instance_types
+}
 
 
 

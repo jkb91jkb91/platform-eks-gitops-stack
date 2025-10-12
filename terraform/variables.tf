@@ -16,21 +16,8 @@ variable "project_name" { type = string }
 variable "environment_name" { type = string }
 
 
-
-# variable "ami" {
-#   type        = string
-#   description = "AMI of the image"
-# }
-
-# variable "instance_type" {
-#   type        = string
-#   description = "instance_type"
-# }
-
-# variable "instance_tags" {
-#   type = map(any)
-# }
-
-# variable "tags" {
-#   type = map(any)
-# }
+############################# EKS ##########################
+variable "cluster_name" { type = string }
+variable "cluster_version" { type = string }
+variable "subnet_ids" { type = list(string) }
+variable "instance_types" { type = list(string) }
