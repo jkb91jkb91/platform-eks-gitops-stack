@@ -1,4 +1,4 @@
-#  EKS PLATFORM  
+#  EKS PLATFORM: MANAGED NODE VERSION 
 
 ---
 
@@ -50,3 +50,13 @@ Connection to AWS from your machine is done by using SSM Agent. EC2 does not use
 ```
 aws ssm start-session --target i-XXXXXXXXXXXX --region <region>
 ```
+
+## EKS  #############################################################################################################
+In this project I decided to use EKS Managed Nodes + Karpenter  
+-full control over NODES/AMI (own AMI)
+-custom kernels  
+-specific DaemonSets  
+-cost savings (Spot Instances + On-Demand mix)  
+-taints  
+
+
