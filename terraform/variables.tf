@@ -17,7 +17,7 @@ variable "environment_name" { type = string }
 
 
 ############################# EKS ##########################
-variable "cluster_name" { type = string }
-variable "cluster_version" { type = string }
-variable "subnet_ids" { type = list(string) }
-variable "instance_types" { type = list(string) }
+# variable "cluster_name" { type = string }
+# variable "cluster_version" { type = string }
+# variable "subnet_ids" { type = list(string) }
+# variable "instance_types" { type = list(string) }
