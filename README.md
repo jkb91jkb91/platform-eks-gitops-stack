@@ -59,4 +59,29 @@ In this project I decided to use EKS Managed Nodes + Karpenter
 -cost savings (Spot Instances + On-Demand mix)  
 -taints  
 
+## EKS RESOURCES  
+#############################################################################################################
+1) VPC/subnets  
+1) OIDC  (connected with issuer)  
+2) EKS Control Plane  
+    - name  
+    - role  
+    - vpc_config  
+4) Managed Node Group  
+    - cluster_name  
+    - node_role_arn  
+    - subnets_ids  
+    - ami_type  
+    - capacity_type  
+    - scalling_config  
+6) Managed add-ons  
+    - cni  
+    - coredns  
+    - kubeproxy  
+    - ebs_csi  
+7) IAM Role eks_cluster  
+8) IAM Role eks_node  
+   - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy  
+   - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy  
+   - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly  
 
