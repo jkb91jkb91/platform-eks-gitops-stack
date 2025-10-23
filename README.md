@@ -60,7 +60,7 @@ In this project I decided to use EKS Managed Nodes + Karpenter
 -taints  
 
 ## EKS RESOURCES  
-#############################################################################################################
+#########################################################################################################
 1) VPC/subnets  
 1) OIDC  (connected with issuer)  
 2) EKS Control Plane  
@@ -85,8 +85,14 @@ In this project I decided to use EKS Managed Nodes + Karpenter
    - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy  
    - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
 
-FOR LOGGING INTO CLUSTER WE HAVE TO OPTIONS >>> Access Entries or aws-auth  #BELOW Access Entries is used  <<< preferred over aws-auth  
-7) Access Entries ( instead aws-auth ) # Responsible for access into CLUSTER  
-8) EKS Access Policy association  
+FOR LOGGING INTO CLUSTER WE HAVE TWO OPTIONS >>>  
+    - Access Entries <<< preferred and used below  
+    - aws-auth  
+7) Access Entries ( instead aws-auth ) # Responsible for access into CLUSTER   
+8) EKS Access Policy association   
+
+## EKS LOGGING INTO CLUSTER  
+#########################################################################################################
+
 
 
