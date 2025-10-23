@@ -42,7 +42,7 @@ terraform plan
 terraform apply
 ```
 
-## ARTICLE  #########################################################################################################
+## ARTICLE  ##################################################################################################
 
 🚀 ....
 
@@ -51,13 +51,49 @@ Connection to AWS from your machine is done by using SSM Agent. EC2 does not use
 aws ssm start-session --target i-XXXXXXXXXXXX --region <region>
 ```
 
-## EKS  #############################################################################################################
-In this project I decided to use EKS Managed Nodes + Karpenter  
--full control over NODES/AMI (own AMI)
--custom kernels  
--specific DaemonSets  
--cost savings (Spot Instances + On-Demand mix)  
--taints  
+## EKS  WORKLOAD TYPES #######################################################################################
+There are 4 types of running workloads  
+1)  Managed Node Groups (EC2)  
+
+2) Self-managed nodes (EC2, own ASG)  
+3) Karpenter (EC2 without ASG)  
+4) Fargate (serverless pods)
+
+```
+Managed Node Groups (EC2, zarządzane przez EKS)
+
+EKS tworzy ASG + LT za Ciebie.
+
+Plusy: prostota, aktualizacje rolling, integracja z eksctl/Terraform.
+
+Minusy: nadal zarządzasz EC2 (AMI, pojemność, koszty).
+
+Self-managed nodes (EC2, własne ASG)
+
+Sam tworzysz ASG/Launch Template i dołączasz węzły do klastra.
+
+Plusy: pełna kontrola (np. niestandardowe AMI).
+
+Minusy: najwięcej operacyjnej roboty.
+
+Karpenter (EC2 bez ASG)
+
+Provisoner skaluje bezpośrednio instancje EC2 pod potrzeby Podów.
+
+Plusy: świetne dopasowanie rozmiaru/typów, szybki scale-up, niższe koszty.
+
+Minusy: nowy komponent do utrzymania, inny model niż ASG.
+
+Fargate (serverless pods)
+
+Bez węzłów EC2/ASG — płacisz za CPU/RAM Podów.
+
+Plusy: zero zarządzania infrastrukturą, dobry dla małych/niekrytycznych zadań.
+
+Minusy: ograniczenia sieci/daemonów/CSI, wyższy koszt przy stałym obciążeniu.
+```
+
+
 
 ## EKS RESOURCES  
 #########################################################################################################
