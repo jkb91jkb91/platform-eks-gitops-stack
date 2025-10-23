@@ -83,5 +83,10 @@ In this project I decided to use EKS Managed Nodes + Karpenter
 8) IAM Role eks_node  
    - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy  
    - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy  
-   - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly  
+   - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+
+FOR LOGGING INTO CLUSTER WE HAVE TO OPTIONS >>> Access Entries or aws-auth  #BELOW Access Entries is used  <<< preferred over aws-auth  
+7) Access Entries ( instead aws-auth ) # Responsible for access into CLUSTER  
+8) EKS Access Policy association  
+
 
