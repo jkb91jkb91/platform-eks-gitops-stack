@@ -120,15 +120,12 @@ Minusy: ograniczenia sieci/daemonów/CSI, wyższy koszt przy stałym obciążeni
    - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy  
    - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy  
    - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
-
-FOR LOGGING INTO CLUSTER WE HAVE TWO OPTIONS >>>  
-    - Access Entries <<< preferred and used below  
-    - aws-auth  
 7) Access Entries ( instead aws-auth ) # Responsible for access into CLUSTER   
 8) EKS Access Policy association   
 
 ## EKS LOGGING INTO CLUSTER  
 #########################################################################################################
-
-
+FOR LOGGING INTO CLUSTER WE HAVE TWO OPTIONS >>>  
+    - Access Entries <<< preferred and used below  
+    - aws-auth  
 
